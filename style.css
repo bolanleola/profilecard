@@ -75,12 +75,72 @@ select {
 
 body{
     background-color: hsl(185, 75%, 39%);
-    background-image: url(images/bg-pattern-top.svg), url(images/bg-pattern-bottom.svg);
-    background-position: left top, bottom right;
-    background-repeat: no-repeat, no-repeat;
-
     padding: 30px;
     font-family: 'Kumbh Sans', sans-serif;
+}
+
+body:before,
+body:after {
+  content: "";
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  z-index: -1;
+}
+
+body:before {
+  width: 120%;
+  height: 135%;
+  top: -70%;
+  left: -20%;
+  background-image: url(images/bg-pattern-top.svg);
+  background-size: contain;
+
+  transform: scale(0.5);
+  animation: bg1 700ms 300ms forwards;
+}
+
+@keyframes bg1 {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+body:after {
+  width: 230%;
+  height: 140%;
+  right: -178%;
+  bottom: -91%;
+  background-image: url(images/bg-pattern-bottom.svg);
+  background-size: contain;
+
+  transform: scale(0.8);
+  animation: bg2 700ms 300ms forwards;
+}
+
+@keyframes bg2 {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width:60em){
+  body{
+    background: url(images/bg-pattern-top.svg), url(images/bg-pattern-bottom.svg), rgb(25, 162, 174);
+    background-repeat: no-repeat;
+    background-position: right 51vw bottom 35vh, left 51vw top 46vh;
+  }
+  body:before,
+  body:after{
+    display: none;
+  }
 }
 
 .container {
